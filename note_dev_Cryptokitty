@@ -1,0 +1,35 @@
+# -Cryptokitty-
+## ソースコードを読んで理解しことのメモ
+ https://blockgeeks.com/guides/cryptokitties/
+
+ https://github.com/cryptocopycats/awesome-cryptokitties/blob/master/contracts/KittyBase.sol
+
+https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3
+
+### CryptokittyBase contract
+キティをどう保存するか
+=>structとして扱う
+ (sire = father , matron = mother の意味)
+
+ERC721に従う
+
+### 疑問点．わからないとこ
+ - kittybaseの_createKitty() function のuint32をuint256で変換してrequireするところ
+=> 同じ型でないと，== で比較できないからだろうか？
+
+ - 同上のコントラクトの７８行目，
+##point
+ -  ERC721の扱い方
+ - 猫の所有権の写し方/transferの仕方
+ - blockchainを用いる線引き・分散化の応用箇所の理解
+ - auctionの仕方 
+ - 
+
+## 基本に戻る必要があるところ，理解の弱い用語・事柄
+ - event-log ? event って結局？
+
+### 注目すべきとこ，素晴らしい点，理解したところ
+ - 全てがブロックチェーンに格納されてない，必要なところにのみ用いている．
+　ネコの画像はサーバに保存されていて，ネコのデータとして画像はブロックチェーンに格納されていない，ethの支払いを少なくするためでもある
+
+ - pausableにしてる．非常時に別のコントラクトを使えるようにしてある？
