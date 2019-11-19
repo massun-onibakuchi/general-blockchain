@@ -1,1 +1,1 @@
-[](https://github.com/ethereumbook/ethereumbook)
+[リンク](https://github.com/ethereumbook/ethereumbook)
