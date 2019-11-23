@@ -13,10 +13,12 @@ Server : 奉仕するもの
 サーバーやネットワークを自社で構築，運用すること
 反対は,クラウドコンピューティング
 
-## DNSサーバー
-IPアドレスとドメインを対応させるサービス
+## DNSサーバー Domain Name System
+IPアドレスとドメインを対応させるサービス.例えば、JPNIC Web（http://www.nic.ad.jp/）をWebブラウザで見る場合、実際にはwww.nic.ad.jpのIPアドレスである202.12.30.144という宛先IPアドレスに対して通信が行われる
 インターネットを利用するためには，必須
-
+ - DNSサーバ図解 https://www.kagoya.jp/howto/rentalserver/dns-server/
+![](https://www.kagoya.jp/howto/wp-content/uploads/kagoya1804-kgr1_50_dns02-.jpg)
+ちなみに，DNSルートサーバーはDNSキャッシュサーバーが最初に問い合わせをするサーバーで，世界中に13機しかない
 ###  サーバー構築に必要なハードウェア
 サーバー用のOSに対応して，サービスを利用するためのソフトウェアが操作するなら，どんなコンピュータでも良いが，安全性とか，大規模なネットワークでは，専用機が必須　
 
