@@ -233,3 +233,10 @@ Revert
 
 # ABI
 ABIはコントラクトに接続するための標準的なインターフェース．コントラクトもABIもブロックチェーン外で作成され、ABIはコントラクトとコントラクトを接続するために使用されます。このドキュメントで紹介されているように、データはABIに従う形でエンコーディングされます
+
+# November 24 ,2019
+## Event
+引数は任意の変数。ここに書いた変数の値がイベント発火時に渡される
+Ref:Eventでコントラクトの監視をする:https://qiita.com/satons/items/d9c2dabfbf513e44f78b  :
+:eventについて，：（アルゴリズムとかオーダーとか）https://daiki-sekiguchi.com/2018/07/24/ethereum-solidity-event/
+：
