@@ -11,7 +11,27 @@ https://kauri.io/ethereum-101-part-2-understanding-nodes/48d5098292fd4f11b251d1b
 https://medium.com/shyft-network-media/understanding-trie-databases-in-ethereum-9f03d2c3325d  
   
 https://ethereum.stackexchange.com/questions/268/ethereum-block-architecture  
-  
+
+## EthereumとBitcoinの金銭の管理方式の違い
+アカウント方式/Account based model　vs　コイン識別方式/UTXO
+
+Account based model
+ - Replay attackに弱い
+
+> Replay attack
+悪意のあるノードが繰り返し同じトランザクションを投げつけること．
+unique number(nonce) ,timeなどをトランザクションに含めることで防ぐ
+
+UTXO model
+ - 残高を数えるのがアカウントベースに比べて面倒
+ - All coins are not the same
+ - Refer to specific coins when spending
+ - Coins are consumed; create new ones
+ - A coin can only be spent once
+
+Input and Ouput 
+Output become an another output
+
 ## イーサリアムのブロックチェーンとビットコインとかのブロックチェーンとどう異なるか  
 イーサリアムのブロックチェーンは，ブロックチェーンに格納するデータにプログラミング言語が組み込まれたブロックチェーンというふうに説明できる．あるいは、大衆の思惑による決定（コンセンサス）を基板とした地球規模の仮想マシンとも言える。実用的な観点からして、EVMは膨大な量のアカウント（というオブジェクト）を内部に保持する分散型コンピュータと考えられる.  
   
