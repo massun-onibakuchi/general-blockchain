@@ -20,7 +20,8 @@ Generally, a shard chain has a subset of nodes processing it. Virtual miners, va
 
 Ethereum’s shards have a dynamic subset of nodes processing it block-by-block.
 
-64Shardsが予定される
+64個のShardsが予定される
+
 ## Beacon chain
 Beacon chainはバリデーターセットとシャードの両方のステートやattestationsを追跡する．attestationは，提案されているブロックへのattester(バリデータ)が行う投票である．
 attestationはBeacon Chainに記録される．
@@ -33,12 +34,12 @@ Beacon chainはバリデーターセットとシャードの両方のステー�
   
 PoSシステムが機能するために，誰がバリデーターであるかのコンセンサスと，それぞれのバリデーターの票がどれくらいの重みがあるかを把握したり，行動に対して適切に報酬や罰を与えるためにステイクがどれくらいであるかのコンセンサスが必要である．さらに，Beacon chainはシャードの現在のステートを追跡するだけでなく，バリデーターに仕事を割り当てることで，shardを管理運営する．  
   
-他のPoSシステムとeth2の異なる部分はプロトコルに参加できるバリデータの数である．eth2は comimitteeというバリデータのグループによって中間レベルのコンセンサスがなされるためにこれを可能にしている．Beacon chainはランダムにバリデータをcommitteに割り当てる．一つのcommiteeの票は暗号化されて一つのattestationに集約される．つまりこれは，commitee全体の票を検証することは一つの票をチェックすることよりもわずかに労力を伴うに過ぎない．したがって，Beacon　chainの正当性をチェックするため，多くのバリデータの票を評価するために検討する必要があるのは，わずかな集約された署名だけである．  
+他のPoSシステムとeth2の異なる部分はプロトコルに参加できるバリデータの数である．eth2は comimitteeというバリデータのグループによって中間レベルのコンセンサスがなされるためにこれを可能にしている．Beacon chainはランダムにバリデータをcommitteに割り当てる．一つのcommiteeの票は暗号化されて一つのattestationに集約される．つまりこれは，commitee全体の票を検証することは一つの票をチェックすることよりもわずかに労力を伴うに過ぎない．したがって，Beacon chainの正当性をチェックするため，多くのバリデータの票を評価するために検討する必要があるのは，わずかな集約された署名だけである．  
 
 用語  
  - slot    
  新しいブロックがチェーンに追加されることが予想される12秒の時間枠 
- Beacon chainに1ブロックと64Shradsブロックが追加される．slotは空になりうる
+ Beacon chainに1ブロックとShradにブロックが追加される．slotは空になりうる
 
  - epoch     
  32スロット（6.4分）で構成され，その間，ビーコンチェーンはチェーンの維持に関連する計算を実行する．これには新しいブロックの正当化とファイナライズ，バリデーターへの報酬とペナルティの発行が含まれる．  

@@ -14,7 +14,7 @@ https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a
 > Under the rules of GHOST, validators/miners can always try to add a new block to the blockchain (liveness), and they can do this at any point in the chain’s history (asynchronous). Since it is live and fully asynchronous, thanks to our friend FLP, we know it can’t be safe.
 
 ### GHOST+The friendly finality gadget
-GHOSTでは担保されない安全性をCasperFFGによってファイナライズと安全性をチェーンに与える
+GHOSTでは担保されないFLP理論におけるSafetyをCasperFFGのファイナライズとCheckpointでSafetyをチェーンに与える
 
 [[1]Ethereum CasperFFG + LMD-GHOSTのペーパー](https://github.com/ethereum/research/blob/master/papers/ffg%2Bghost/paper.pdf)
 
