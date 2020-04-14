@@ -14,7 +14,7 @@ https://github.com/ethereum/wiki/wiki/%5BJapanese%5D-White-Paper
  > Blockchains are a way for many different people or computers to agree on something even though they don’t know or trust each other.  
 
 ブロックチェーン - ネットワーク(P2P,分散)上で互いに信頼しなくても何かを決定，合意に達することができる技術．数学や暗号技術によって参加者全員がある一つの状態(state)について合意できるようになっているデータベースでもありネットワークのシステム．　ブロックチェーン(データ)は不特定多数の参加者(node)によってある一つの状態が共有，同期される．  
-例：Bitcoin　データ＝どのUTXOが誰のものであるかの金銭のリスト，要するに，これまでされてきたすべての支払いの金銭のデータがブロックチェーンに記録してあり，ネットワーク参加者全員（やや不正確な言い方か）がその同じデータ(ブロック)を共有して保持している．改ざんがないことを暗号技術的に自分で確かめることができ，改ざんを防ぐようなシステム  
+@例：Bitcoin　データ＝どのUTXOが誰のものであるかの金銭のリスト，要するに，これまでされてきたすべての支払いの金銭のデータがブロックチェーンに記録してあり，ネットワーク参加者全員（やや不正確な言い方か）がその同じデータ(ブロック)を共有して保持している．改ざんがないことを暗号技術的に自分で確かめることができ，改ざんを防ぐようなシステム  
 Trustless Tracability Decentralised  
 
 # Ethereum2.0
