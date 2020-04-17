@@ -7,7 +7,7 @@ https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a
 によると，
  > GHOST selects the head of the chain by choosing the fork which has the most votes (it does this by considering all of the votes for each fork block and their respective child blocks).
 
-つまり，フォークがあるたびに，GHOSTはより多くの最新のメッセージが支持するブロックのサブツリー側を選択する．このアルゴリズムは子を持たないブロックに到達するまで，行う
+つまり，フォークがあるたびに，GHOSTはより多くの最新のメッセージ(attestaion)が支持するブロックのサブツリー側を選択する．このアルゴリズムは子を持たないブロックに到達するまで，行う
 
 > In particular, eth2 uses a variation of GHOST which has been adapted to a PoS context called Latest Message Driven GHOST (LMD-GHOST). The idea behind LMD-GHOST is that when calculating the head of the chain, one only considers the latest vote made by each validator, and not any of the votes made in the past. This dramatically decreases the computation required when running GHOST, since the number of forks that need to be considered to execute the fork choice cannot be greater than the number of validators ($O(v)$ in Big O notation). 
 
@@ -16,6 +16,7 @@ https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a
 ### GHOST+The friendly finality gadget
 GHOSTでは担保されないFLP理論におけるSafetyをCasperFFGのファイナライズとCheckpointでSafetyをチェーンに与える
 
+ > If there is an attack on the network and/or a large proportion of validators go offline, then GHOST continues adding new blocks. However, since GHOST is live, but not safe, it may change its mind about the head of the chain – this is because new blocks are continually added to the chain, which means nodes keep learning new information. FFG on the other hand, favours safety over liveness meaning that it stops finalising blocks until the network is stable enough for validators to vote consistently again.
 [[1]Ethereum CasperFFG + LMD-GHOSTのペーパー](https://github.com/ethereum/research/blob/master/papers/ffg%2Bghost/paper.pdf)
 
 [[2]Ethereum blog Validated, staking on eth2: #2](https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a-trench-coat/)

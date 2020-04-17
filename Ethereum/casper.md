@@ -3,7 +3,7 @@ PoWの問題点，ゆるくPoSの概要からはじめて，EthereumのPoSので
 
 ##  PoWからPoSへの移行
 ### PoWの問題
-- マイナー（バリデータ）の中央集権化
+- マイナー（バリデーター）の中央集権化
 
   特にビットコインに当てはまるが，PoWでは規模の経済が成り立つため，大規模マイナーが小規模マイナーに対して有利にマイニングできる．
 
@@ -11,14 +11,14 @@ PoWの問題点，ゆるくPoSの概要からはじめて，EthereumのPoSので
 
   よく言われる．
 
-  エネルギー効率が高くてもネットワークへの参加コストが安い場合，攻撃コストも安くなってしまう．ビットコインの場合、ASICの費用と電気代というコストが掛かるため攻撃者に一定のコストを負わせることが可能である．EthereumのPoSの場合，自身がステイクしているETHが没収されるかもしれないという潜在的なリスクを負わせることによってネットワークのセキュリティを確保する．（参考文献[3]　詳細は後述）
+  エネルギー効率が高くてもネットワークへの参加コストが安い場合，攻撃コストも安くなってしまう．ビットコインの場合、ASICの費用と電気代というコストが掛かるため攻撃者に一定のコストを負わせることが可能である．EthereumのPoSの場合，自身がステイクしているETHが没収されるかもしれないという潜在的なリスクを負わせることによってネットワークのセキュリティを確保する．（参考文献[3]）
 
  - 51%攻撃
  - ファイナリティ問題  
  確率的ファイナリティである．Bitcoinだと6コンファメーションは欲しいとよく聞く
 
 ## PoS  
-PoWでいうところのminerに近いものは，PoSではバリデータという．バリデータがが次のブロックを提案，投票を行う．バリデータの投票の重みはそのバリデータがステイクした大きさに依存する．
+PoWでいうところのminerに近いものは，PoSではバリデーターという．バリデーターがが次のブロックを提案，投票を行う．バリデーターの投票の重みはそのバリデーターがステイクした大きさに依存する．
 
 ブロックを採掘できる確率が，PoWはマシンのハッシュパワーに依存するが，PoSはステイクに応じてブロックを採掘できる確率が決定される．
 "one unit of CPU power, one vote" it becomes "one currency unit, one vote". 
@@ -58,13 +58,14 @@ PoS型
   
 ## CasperFFG  
 バリデーターにはマイナーのように、ブロックを生成したり、ファイナリティを与える役割がある．Casper FFGではマイナーがPoWでブロックを生成し、バリデーターがPoSで特定のブロック高ごとに検証を行い、チェーンにファイナリティをもたらす.PoWによって生成されたブロックチェーンは確率的ファイナリティをもたらすに留まるが、Casper FFGではPoSによってファイナリティがもたらされる．
+Finality:いったんある事柄について操作が完了したら，もう取り消し不能であること，金融における文脈では，決済が確定して，完了して取り消さない
 
-単純PoSの問題を解決するために懲罰アルゴリズムとしてslasherを導入
+単純PoSのNothing-At-Stake問題を解決するために懲罰アルゴリズムとしてslasherを導入
 
 ## CasperFFGの流れ
 PoWでブロックを進めていく  
 特定のブロック高(現在のところ 32ブロック)を1epochとする  
-1epochの終わりごとにcheckpointがあり，checkpointでバリデータがPoSによる投票を行う．
+1epochの終わりごとにcheckpointがあり，checkpointでバリデーターがPoSによる投票を行う．
 全投票数の2/3以上の投票が集まるとjustfiedとなる.  justified：仮のfinalizedの状態のこと
 また，次のepochまでブロックが進む  
 次のepochがjustifiedされると，ひとつ前のjustifiedされたcheckpointはfinalizedとなる．  
@@ -72,39 +73,41 @@ finalisedされたところから，上述の過程を繰り返す．
 
 Aがjustfyされており，A->Bに全バリデーターのステイクの2/3以上のattestaionの票があるならば，chekpoint A によってcheckpoint Bがjustifyされる．これをA->Bに supermajority linkがあるという．
 
-Casper FFGではバリデータによってfinalizeされたチェックポイントは後に覆されることはないため，ロングレンジアタックと呼ばれる過去のブロックを書き換えるような攻撃を防ぐ．また，checkpointとfinalizationによってブロックチェーンにファイナリティをもたらす．
+Casper FFGではバリデーターによってfinalizeされたチェックポイントは後に覆されることはないため，ロングレンジアタックと呼ばれる過去のブロックを書き換えるような攻撃を防ぐ．また，checkpointとfinalizationによってブロックチェーンにファイナリティをもたらす．
 
 https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a-trench-coat/　　
 によると
 
  > FFG employs a clever trick. Votes actually consist of two sub-votes, one for the epoch that is attempting to be justified and another for an earlier epoch that is to become finalised. This saves a lot of extra communication between nodes and helps to achieve the goal of scaling to millions of validators.
 
-checkpointでフォークがあった場合，二重に投票したり，両方に投票したりすることは許されず，これらのSlashing Conditionに違反したバリデータはslasherによってステイクを没収される
+checkpointでフォークがあった場合，二重に投票したり，両方に投票したりすることは許されず，これらのSlashing Conditionに違反したバリデーターはslasherによってステイクを没収される
 
 
-### slashingの役割
+### slashingの役割と条件
+バリデーターをシステムに貢献するようにはたらかせるためのインセンティブとしての役割．  
+シバかれる条件slashing condition はeth2 phase0では今の所，二重投票や入れ子投票である（詳細はオリジナルの論文を参照）
+
  1. to make it prohibitively expensive to attack eth2,
  2. to stop validators from being lazy by checking that they actually perform their duties. 
 
-シバかれる条件slashing condition はeth2 phase0では今の所，二重投票や入れ子投票である（詳細はオリジナルの論文を参照）
 
-### バリデータが善意にはたらくインセンティブ
-eth2では，バリデータは怠惰で，賄賂を受け取り，インセンティブがない限りシステムに攻撃を仕掛けようとすることを想定している．
-slashingによる罰は悪い行動を妨げるが，バリデータにeth2に恩恵を与える行動を取らせるためには報酬が必要である．(詳細は参考文献[1])以下は参考文献[1]より抜粋
+### バリデーターが善意にはたらくインセンティブ
+バリデーターは怠惰で，賄賂を受け取り，インセンティブがない限りシステムに攻撃を仕掛けようとすることを想定している．　　
+slashingによる罰は悪い行動を妨げるが，バリデーターにeth2に利益を与える行動を取らせるためには報酬が必要である．(詳細は参考文献[1])以下は参考文献[1]抜粋の和訳
 
  - Whistleblower rewards 🚓  
- 違反しているバリデータを見つけてチクる？？と報酬がもらえる．  
+ 違反しているバリデーターを見つけてチクる？？と報酬がもらえる．  
 
  - Proposer rewards ⬜️⛓⬛️⛓⬜️  
- ブロックを生成する仕事にランダムに任命されたバリデータをプロポーザーproposerという．プロポーザーはある与えられる仕事を行うと報酬が与えられる．
+ ブロックを生成する仕事にランダムに任命されたバリデーターをプロポーザーproposerという．プロポーザーはある与えられる仕事を行うと報酬が与えられる．
 
  - Attester rewards ✔  
-  バリデータによって投票される票はAttestationと言われる．  コンセンサスを形成する投票などの行動をとると，報酬が与えられる．（詳細は参考文献[1]）  
+  バリデーターによって投票される票はAttestationと言われる．  コンセンサスを形成する投票などの行動をとると，報酬が与えられる．（詳細は参考文献[1]）  
 
-これらの報酬によって，バリデータはチェーンに貢献するように促進される．  
+これらの報酬によって，バリデーターはチェーンに貢献するように促進される．  
 
 ## 参考文献
-[[1]Ethereum Combining Ghost and Casper paper](https://arxiv.org/abs/2003.03052) // 6 Mar 2020 (v1), last revised 12 Mar 2020 (this version, v2)
+[[0]Ethereum Combining Ghost and Casper paper](https://arxiv.org/abs/2003.03052) // 6 Mar 2020 (v1), last revised 12 Mar 2020 (this version, v2)
 
 [[1]Ethrerum Blog Validated, staking on eth2: #1 - Incentives](https://blog.ethereum.org/2020/01/13/validated-staking-on-eth2-1-incentives/) // Jan 2020
 
