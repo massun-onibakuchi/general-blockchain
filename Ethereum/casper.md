@@ -1,5 +1,5 @@
 # Casper  
-PoWの問題点，ゆるくPoSの概要からはじめて，EthereumのPoSのであるCasperについて
+PoWの問題点，ゆるくPoSの概要からはじめて，EthereumのPoSのであるCasperFFGについて
 
 ##  PoWからPoSへの移行
 ### PoWの問題
@@ -14,6 +14,7 @@ PoWの問題点，ゆるくPoSの概要からはじめて，EthereumのPoSので
   エネルギー効率が高くてもネットワークへの参加コストが安い場合，攻撃コストも安くなってしまう．ビットコインの場合、ASICの費用と電気代というコストが掛かるため攻撃者に一定のコストを負わせることが可能である．EthereumのPoSの場合，自身がステイクしているETHが没収されるかもしれないという潜在的なリスクを負わせることによってネットワークのセキュリティを確保する．（参考文献[3]）
 
  - 51%攻撃
+
  - ファイナリティ問題  
  確率的ファイナリティである．Bitcoinだと6コンファメーションは欲しいとよく聞く
 
@@ -82,7 +83,19 @@ https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a
 
 checkpointでフォークがあった場合，二重に投票したり，両方に投票したりすることは許されず，これらのSlashing Conditionに違反したバリデーターはslasherによってステイクを没収される
 
-
+> [4]より   
+ **Justification**: A block B is justified if:   
+ 
+  - it is the genesis block, or   
+  - more than 2/3rd validators have made votes (A, B) , where A is some ancestor of B and A is a  justified block   
+ 
+ **Finalization**: A block B is finalized if:    
+ 
+  - it is the genesis block, or   
+  - B is justified and more than 2/3rd validators  have made votes (B, C), where C is the direct  child of B (i.e., height(C) = height(B) + 1)    
+ 
+ **Note**: There is a more general definition of  finalization in Casper FFG which is used in Eth2.0.  More information about it can be found in this paper [0]. The specific definition above was chosen to  keep this post simple.    
+ 
 ### slashingの役割と条件
 バリデーターをシステムに貢献するようにはたらかせるためのインセンティブとしての役割．  
 シバかれる条件slashing condition はeth2 phase0では今の所，二重投票や入れ子投票である（詳細はオリジナルの論文を参照）
@@ -114,7 +127,7 @@ slashingによる罰は悪い行動を妨げるが，バリデーターにeth2�
 [[2]Ethereum  casper_basics.pdf](https://arxiv.org/pdf/1710.09437.pdf) // 22 Jan 2019
 
 [[3]individua1  CasperFFG](https://individua1.net/casper-ffg-dynamic-validator-sets/) //June 2017
-
+[[4] Aditya Asgaonkar CasperFFG Explainer](https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html) // Mar 31 ,2020
 [YouTube-PoS,CapserFFGについて](https://www.youtube.com/watch?v=RwjJmsyfKFk)
 
 [block-chain.jp byコンセンサス・ベイス　Casperについて](https://block-chain.jp/ethereum/casper1/)  //2017-2018

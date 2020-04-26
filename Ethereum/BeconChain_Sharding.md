@@ -1,17 +1,22 @@
 # Sharding＆Beacon Chain
 Beacon ChainとShardingについてのメモ．
+
 eth2はいくつかのフェーズに分けられて段階的に移行する．
 EthereumやBitcoin，PoSについての土台があることを前提とする
 
-eth2についてはこちらを参照
-　https://medium.com/@chromaticcapital/eth2-for-dummies-11ff9b11509f
+[eth2についてはこちらを参照](https://medium.com/@chromaticcapital/eth2-for-dummies-11ff9b11509f)
 
-eth2のロードマップについては　https://ethos.dev/ethereum-2020-roadmap/
-
+[eth2のロードマップについてはこちらを参照](https://ethos.dev/ethereum-2020-roadmap/)
 
 参考文献[0]は[1],[2]を集約したフレンドリーな解説で英語も優しめ　
 
-以下の本編は主に参考文献[0],[2]を参考にした和訳．
+以下の本編は主に参考文献[2],[0]の和訳．
+
+Beacon Chainはバリデーターセットやattestaion，各シャードチェーンのステートを追跡する，また，バリデーターをcommitteに割り当てたりすることも行う．シャードチェーンはデータを保存するチェーンで従来のEthereumブロックチェーンに近い位置付けである．64のシャードチェーンを実装して並列処理する．Beacon　chainが各シャードチェーンにファイナリティを与える．
+
+## ValidatorのAttestationの流れ
+
+Proposerという選ばれたバリデーターが割り当てられたslotにブロックを生成する．バリデーターは割り当てられたシャードのコンセンサスに参加しているので，そのシャードのヘッドに投票できる．バリデーターはシャードヘッドをslotのBeaconブロックにリンクさせる．
 ## Sharding
 簡単にいうと，今までひとつのブロックチェーンに読み書きしてきたけど，たくさんのチェーンで行えば，スケーリングの向上できるよね.  
 名前はデータベースシャーディングに由来  
@@ -23,9 +28,9 @@ Ethereum’s shards have a dynamic subset of nodes processing it block-by-block.
 64個のShardsが予定される
 
 ## Beacon Chain
-Beacon Chainはバリデーターセットとシャードの両方のステートやattestationsを追跡する．attestationは，提案されているブロックへのattester(バリデータ)が行う投票である．
+Beacon Chainはバリデーターセットとすべてのシャードのステートやattestationsを追跡する．attestationは，提案されているブロックへのattester(バリデータ)が行う投票である．
 attestationはBeacon Chainに記録される．
-Beacon Chain用のクライアントを用いる
+Beacon nodeというBeacon Chain用のクライアントを用いる
 ## Sharding Consensus
   
 > the beacon chain tracks the state of both the set of     
@@ -53,15 +58,10 @@ eth2の分割されたコンセンサスのセキュリティモデルは，comm
 
 シャードブロックに対する十分なattestaionが集められると，Beacon Chainのブロックに対してcrosslinkがつくられる．crosslinkは非同期のクロスシャードコミュニケーションに必要．
 
-## サマリー
-Aggregate signatures
- - 
-
-
-[[3]Status Two Point Oh Justification and Finalization](https://our.status.im/two-point-oh-justification-and-finalization/)
-
 [[0]ethos.dev The Beacon Chain Ethereum 2.0 explainer you need to read first](https://ethos.dev/beacon-Chain/) //Feb 25 ,2019
 
 [[1]Ethereum Blog Validated: Staking on eth2 #0](https://blog.ethereum.org/2019/11/27/validated-staking-on-eth2-0/) // November 27 ,2019
 
 [[2]Ethereum Blog Validated, staking on eth2: #3 - Sharding Consensus](https://blog.ethereum.org/2020/03/27/sharding-consensus/) // March 27, 2020
+
+[[3]Status Two Point Oh Justification and Finalization](https://our.status.im/two-point-oh-justification-and-finalization/)

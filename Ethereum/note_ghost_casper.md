@@ -29,12 +29,12 @@ epoch 0  => slot 0 ,1,2...63 epoch 1 => slot 64 ,65...127
 ## Gasper
 combination of the GHOST and Casper FFG ideas.
 
- - 4 Main Protocol: Gasper
+ - 4 Main Protocol: Gasper  
  (Epoch boundary) pairs of a chain: given a chain, certain blocks are picked out, ideally one per epoch, to play the role of Casper’s checkpoints. However, a block may appear more than once as a checkpoint on the same chain (this is a nuance not found in Casper; we expound on this in Section 4.1), so we use ordered pairs (B, j), where B is a block and j is an epoch, to disambiguate. These will be called epoch boundary pairs, or pairs for short.
 
  - 4.1 Epoch Boundary Blocks and Pairs
+  Recall any particular block B uniquely determines a chain, chain(B). For a block B and an epoch j, define EBB(B, j), the j-th epoch boundary block of B, to be the block with the highest slot less than or equal to jC in chain(B). Let the latest such block be LEBB(B), or the last epoch boundary block (of B). We make a few observations:
 
-Recall any particular block B uniquely determines a chain, chain(B). For a block B and an epoch j, define EBB(B, j), the j-th epoch boundary block of B, to be the block with the highest slot less than or equal to jC in chain(B). Let the latest such block be LEBB(B), or the last epoch boundary block (of B). We make a few observations:
  - For every block B, EBB(B, 0) = B_genesis.
  - More generally, if slot(B) = jC for some epoch j, B will be an epoch boundary block in
 every chain that includes it.
@@ -43,7 +43,7 @@ every chain that includes it.
 ## よくわからない
  - supermajority linkがあると，どうなるのか，何の役に立つのか
  - supermajority linkとjustifidの関係
- - epoch boundary blockとepochの対応
+ - epoch boundary blockとepochの対応  
  まず，FFGにおけるcheckpointとを拡張したものが，epoch boundary block  
 
  For a block B and an epoch j, define EBB(B, j), the j-th epoch boundary block of B, to be the block with the highest slot less than or equal to jC in chain(B). Let the latest such block be LEBB(B), or the last epoch boundary block (of B).   
@@ -57,6 +57,21 @@ every chain that includes it.
  Which epochs (within the past 4) are used as the source of the most recent justifications.  
  That the epochs between source and target are also justified (if any exist).  
  If these conditions are satisfied, the source is finalized. Note that we only consider k=1 and k=2 finality rules discussed in section 4.4.3 of the draft paper.  
+
+ > 4.5 Finalization   
+  
+ Given our notion of justification and a new fork-choice rule, we are now ready to define the notion of finalization. Finalization is a stronger notion of justification in the sense that the moment any view considers a block B as finalized for some j, no view will finalize a block conflicting with B unless the blockchain is (1/3)-slashable.  
+
+>  **Definition 4.9.** For a view G, we say (B0, j) is finalized (specifically, k-finalized) in G if (B0, j) = (Bgenesis,0)orifthereisanintegerk≥1andblocksB1,...,Bk ∈view(G)suchthatthefollowing holds:   
+ - (B0,j),(B1,j+1),...,(Bk,j+k)areadjacentepochboundarypairsinchain(Bk);    
+ - (B0,j),(B1,j+1),...,(Bk−1,j+k−1)areallinJ(G);    
+ - (B0,j)→−J (Bk,j+k).      
+We define F (G) to be the set of finalized pairs in the view G; we also say that a block B is finalized 
+if (B,j) ∈ F(G) for some epoch j.   
+
+ > 8.5 A Four-Case Finalization Rule   
+ 
+ While Gasper’s Definition 4.9 captures the “general” version of the mathematical idea of finaliza- tion, the proposed implementation uses a “reduced” version only looking at the last 4 epochs for practicality. In particular, let B1, B2, B3, B4 be epoch boundary blocks for consecutive epochs, with B4 being the most recent epoch boundary block.
 
 [[1]Phase0 for Humans v0100](https://notes.ethereum.org/@djrtwo/Bkn3zpwxB?type=view#Phase-0-for-Humans-v0100)
 

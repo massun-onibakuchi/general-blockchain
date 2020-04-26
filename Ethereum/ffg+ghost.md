@@ -1,7 +1,7 @@
-# CasperFFG + LMD-GHOST
+# CasperFFG + LMD GHOST
 
-## LMD-GHOST
-PoS仕様の[Greedy Heaviest Observed Subtree (GHOST)](https://eprint.iacr.org/2013/881.pdf)であるLMD-GHOSTをフォークルールとして用いる．
+## LMD GHOST
+PoS仕様の[Greedy Heaviest Observed Subtree (GHOST)](https://eprint.iacr.org/2013/881.pdf)であるLMD GHOSTをフォークルールとして用いる．
 
 https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a-trench-coat/
 によると，
@@ -17,6 +17,8 @@ https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a
 GHOSTでは担保されないFLP理論におけるSafetyをCasperFFGのファイナライズとCheckpointでSafetyをチェーンに与える
 
  > If there is an attack on the network and/or a large proportion of validators go offline, then GHOST continues adding new blocks. However, since GHOST is live, but not safe, it may change its mind about the head of the chain – this is because new blocks are continually added to the chain, which means nodes keep learning new information. FFG on the other hand, favours safety over liveness meaning that it stops finalising blocks until the network is stable enough for validators to vote consistently again.
+
+ 
 [[1]Ethereum CasperFFG + LMD-GHOSTのペーパー](https://github.com/ethereum/research/blob/master/papers/ffg%2Bghost/paper.pdf)
 
 [[2]Ethereum blog Validated, staking on eth2: #2](https://blog.ethereum.org/2020/02/12/validated-staking-on-eth2-2-two-ghosts-in-a-trench-coat/)
